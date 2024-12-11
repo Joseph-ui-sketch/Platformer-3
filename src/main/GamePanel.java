@@ -1,20 +1,11 @@
 package main;
 
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.InputStream;
-
-import javax.imageio.ImageIO;
-import javax.swing.JPanel;
-
 import inputs.KeyboardInputs;
 import inputs.MouseInputs;
 
-import static utilz.Constants.PlayerConstants.*;
-import static utilz.Constants.Directions.*;
+import javax.swing.*;
+import java.awt.*;
 
-// TODO: double check this file.  Sometimes I just give you improvements :)
 public class GamePanel extends JPanel {
 
     private MouseInputs mouseInputs;
@@ -31,8 +22,8 @@ public class GamePanel extends JPanel {
     }
 
     private void setPanelSize() {
-        Dimension size = new Dimension(1280, 800);
-        setPreferredSize(size);
+        // TODO: create a Dimension called size and set to new Dimension passing in GAME_WIDTH, and GAME_HEIGHT
+        // TODO: call setPreferredSize passing in size
     }
 
     public void updateGame() {
@@ -40,15 +31,8 @@ public class GamePanel extends JPanel {
     }
 
     public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-
-        g.setColor(Color.white);
-        for (int i = 0; i < 64; i++) {
-            for (int j = 0; j < 40; j++) {
-                g.fillRect(i * 20, j * 20, 20, 20);
-            }
-        }
-        game.render(g);
+        // TODO: call super.paintComponent(g)
+        // TODO: call game.render passing in g
     }
 
     public Game getGame() {

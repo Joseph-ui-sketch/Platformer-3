@@ -1,10 +1,11 @@
 package main;
 
-import entities.Player;
+import java.awt.Graphics;
 
-import java.awt.*;
+import gamestates.Gamestate;
+import gamestates.Menu;
+import gamestates.Playing;
 
-// TODO: double check this file.  Sometimes I just give you improvements :)
 public class Game implements Runnable {
 
     private GameWindow gameWindow;
@@ -13,7 +14,18 @@ public class Game implements Runnable {
     private final int FPS_SET = 120;
     private final int UPS_SET = 200;
 
-    private Player player;
+    // TODO: create a private field of type Playing named playing.
+    // TODO: create a private field of type Menu named menu
+
+
+    // TODO: create public final static fields of the following name and value (these are some extra constants)
+    // TODO: int TILES_DEFAULT_SIZE set to 32
+    // TODO: float SCALE set to 2f
+    // TODO: int TILES_IN_WIDTH set to 26
+    // TODO: int TILES_IN_HEIGHT set to 14
+    // TODO: int TILES_SIZE set to (int) (TILES_DEFAULT_SIZE * SCALE)
+    // TODO: int GAME_WIDTH set to TILES_SIZE * TILES_IN_WIDTH
+    // TODO: int GAME_HEIGHT set to TILES_SIZE * TILE_IN_HEIGHT
 
     public Game() {
         initClasses();
@@ -23,10 +35,12 @@ public class Game implements Runnable {
         gamePanel.requestFocus();
 
         startGameLoop();
+
     }
 
-    public void initClasses() {
-        player = new Player(200, 200);
+    private void initClasses() {
+        // TODO: set menu to new Menu passing in this
+        // TODO: set playing to new Playing passing in this
     }
 
     private void startGameLoop() {
@@ -35,17 +49,37 @@ public class Game implements Runnable {
     }
 
     public void update() {
-        player.update();
+        switch (Gamestate.state) {
+            case MENU:
+                // TODO: call menu.update()
+                break;
+            case PLAYING:
+                // TODO: call playing.update()
+                break;
+            case OPTIONS:
+            case QUIT:
+            default:
+                // TODO: call System.exit passing in 0
+                break;
+        }
     }
 
     public void render(Graphics g) {
-        player.render(g);
+        switch (Gamestate.state) {
+            case MENU:
+                // TODO: call menu.draw passing in g
+                break;
+            case PLAYING:
+                // TODO: call playing.draw passing in g
+                break;
+            default:
+                break;
+        }
     }
 
     @Override
     public void run() {
-        // TODO: Note new and improved game loop that reduces lag.
-        // will discuss when I return.
+
         double timePerFrame = 1000000000.0 / FPS_SET;
         double timePerUpdate = 1000000000.0 / UPS_SET;
 
@@ -85,13 +119,19 @@ public class Game implements Runnable {
 
             }
         }
+
     }
 
     public void windowFocusLost() {
-        player.resetDirBooleans();
+        // TODO: if Gamestate.state is equal to Gamestate.PLAYING
+        // TODO: call playing.getPlayer().resetDirBoolean()
     }
 
-    public Player getPlayer() {
-        return player;
+    public Menu getMenu() {
+        return menu;
+    }
+
+    public Playing getPlaying() {
+        return playing;
     }
 }
