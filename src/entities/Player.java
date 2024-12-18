@@ -21,7 +21,6 @@ public class Player extends Entity {
     private float xDrawOffset = 21 * Game.SCALE;
     private float yDrawOffset = 4 * Game.SCALE;
 
-    // Jumping / Gravity
     private float airSpeed = 0f;
     private float gravity = 0.04f * Game.SCALE;
     private float jumpSpeed = -2.25f * Game.SCALE;
@@ -31,7 +30,7 @@ public class Player extends Entity {
     public Player(float x, float y, int width, int height) {
         super(x, y, width, height);
         loadAnimations();
-        // TODO: call initHitbox passing in x, y, (int) (20 * Game.SCALE), (int) (27 * Game.SCALE)
+        initHitbox((int)20 * Game.SCALE, (int) 27 * Game.SCALE);
     }
 
     public void update() {
@@ -41,7 +40,7 @@ public class Player extends Entity {
     }
 
     public void render(Graphics g) {
-        // TODO: call g.drawImage passing in animations[playerAction][aniIndex], (int)(hitbox.x - xDrawOffset), (int)(hitbox.y - YDrawOffset), width, height, null)
+        g.drawImage(animations[playerAction][aniIndex], animations [playerAction][aniIndex],(int)(hitbox.x - xDrawOffset), (int)(hitbox.y - yDrawOffset), width, height, null);
     }
 
     private void updateAnimationTick() {
@@ -63,10 +62,12 @@ public class Player extends Entity {
         else
             playerAction = IDLE;
 
-        // TODO: if inAir
-        // TODO: if airSpeed is less than 0
-        // TODO: set playerAction to JUMP
-        // TODO: else set playerAction to FALLING
+        if (inAir)
+        if (airSpeed < 0)
+            playerAction = JUMP;
+            playerAction = FALLING;
+
+
 
 
         if (attacking)
@@ -84,14 +85,19 @@ public class Player extends Entity {
     private void updatePos() {
         moving = false;
 
-        // TODO: if jump
-        // TODO: call jump()
+        if (jump) ;
+        jump();
+
+        if (left);
+
+
         // TODO: if not left and not right and not inAir
         // TODO: return
 
         // create a float called xSpeed and set to 0
 
         // TODO: if left subtract playerSpeed from xSpeed
+
         // TODO: if right add playerSpeed to xSpeed
 
 
@@ -111,14 +117,16 @@ public class Player extends Entity {
         // TODO: call resetInAir()
         // TODO: else
         // TODO: set airSpeed to fallSpeedAfterCollision
-        // TODO: done with else call updateXPos(xSpeed)
+        // TODO: call updateXPos(xSpeed)
         // TODO: else (based off of if inAir)
         // TODO: call updateXPos(xSpeed)
         // TODO: set moving to true
+
     }
 
     private void jump() {
-        // TODO: if inAir then return
+        // TODO: if inAir
+        // TODO: then return
         // TODO: set inAir to true
         // TODO: set airSpeed to jumpSpeed
     }
@@ -131,7 +139,8 @@ public class Player extends Entity {
     private void updateXPos(float xSpeed) {
         // TODO: if CanMoveHere(hitbox.x + xSpeed, hitbox.y, hitbox.width, hitbox.height, lvlData)
         // TODO: add xSpeed to hitbox.x
-        // TODO: else set hitbox.x to GetEntityXPosNextToWall(hitbox, xSpeed)
+        // TODO: else
+        // TODO: set hitbox.x to GetEntityXPosNextToWall(hitbox, xSpeed)
     }
 
     private void loadAnimations() {
